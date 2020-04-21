@@ -12,7 +12,8 @@ Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
     Dim strMsg As String
     Dim Address As String
     Dim intLen As Integer
-    Dim uniquelist As New Collection, a
+    Dim uniquelist As New Collection
+    Dim domain As Variant
     Dim list As String
     Dim strMyDomain As String
     Dim userAddress As String
@@ -42,11 +43,11 @@ Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
 
     If uniquelist.Count > 1 Then
     
-        For Each a In uniquelist
-            list = list & " " & a
+        For Each domain In uniquelist
+            list = list & " " & domain
         Next
 
-        prompt = "This email is being sent to recipients at the following domains. Do you wish to continue? " & vbNewLine & list
+        prompt = "Do you wish to email recipients from the following domains? " & vbNewLine & list
 
         If MsgBox(prompt, vbYesNo + vbExclamation + vbMsgBoxSetForeground, "Check Addresses") = vbNo Then
             Cancel = True
