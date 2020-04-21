@@ -2,13 +2,12 @@
 
 ' MIT licence https://github.com/blokeley/check_email_domains/blob/master/LICENSE
 
-' Version 0.1
+' Version 1.0.0
 
 Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
     Dim recip As Outlook.Recipient
     Dim pa As Outlook.PropertyAccessor
     Dim prompt As String
-    Dim strMsg As String
     Dim strAddress As String
     Dim intAtIndex As Integer
     Dim colUniqueDomains As New Collection
