@@ -2,7 +2,7 @@
 
 ' MIT licence https://github.com/blokeley/check_email_domains/blob/master/LICENSE
 
-' Version 1.0.0
+' Version 1.0.1
 
 Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
     Dim recip As Outlook.Recipient
@@ -18,7 +18,10 @@ Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
     Dim strMyAddress As String
 
     Const PR_SMTP_ADDRESS As String = "http://schemas.microsoft.com/mapi/proptag/0x39FE001E"
-    
+
+    ' Ignore Task assignment messages     
+    If Item.Class = olTaskRequest Then Exit Sub
+
     strMyAddress = Session.CurrentUser.AddressEntry.GetExchangeUser.PrimarySmtpAddress 
     intAtIndex = Len(strMyAddress) - InStrRev(strMyAddress, "@")
     strMyDomain = Right(strMyAddress, intAtIndex)
